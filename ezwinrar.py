@@ -171,7 +171,7 @@ def main(argv):
 
     out, err = p.communicate()
 
-    print("out:{}\r\nerr:{}".format(out,err))
+    #print("out:{}\r\nerr:{}".format(out,err))
 
     with open("step1.ace","rb") as f1:
         first_part = f1.read(0x35)
