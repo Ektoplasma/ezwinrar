@@ -10,7 +10,7 @@ Python tool exploiting CVE-2018-20250 found by CheckPoint folks : https://resear
 Since it is not possible to guess the name of the victime in advance (else use 3), the path will be like `..\Appdata\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`   
 
 (2) System startup folder:  
-File will be in `%ProgramData%\Microsoft\Windows\Start Menu\Programs\StartUp`. System privileges are required.
+File will be in `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp`. System privileges are required.
 
 (3) Custom local location  
 

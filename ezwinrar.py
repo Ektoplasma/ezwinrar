@@ -131,7 +131,7 @@ def choose_payload():
                 return nfn
             elif choice[0] == "2":
                 nfn = input("[System startup folder] New filename: ")
-                nfn = "C:\\C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartUp\\"+nfn
+                nfn = "C:\\C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\"+nfn
                 return nfn
             elif choice[0] == "3":
                 nfn = input("[Custom local directory] New absolute path: ")
