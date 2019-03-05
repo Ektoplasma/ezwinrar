@@ -121,7 +121,7 @@ def choose_payload():
         print("\t\t(1) User's startup folder")
         print("\t\t(2) System startup folder")
         print("\t\t(3) Custom local location")
-        print("\t\t(4) SMB location [not implemented]")
+        print("\t\t(4) SMB location [not implemented yet]")
         print("\t\t(0) Exit")
         choice = input("Your choice: ")
         if len(choice) > 0:
